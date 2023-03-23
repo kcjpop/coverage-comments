@@ -9973,7 +9973,14 @@ const github = __nccwpck_require__(3695)
 const { getStats } = __nccwpck_require__(6041)
 
 function draftComment(stats) {
-  return `Comment ${stats.lines.hit} / ${stats.lines.found}`
+  return `**Coverage report:**
+
+|           | **Found**                | **Hit**                | **%**                         |
+|-----------|--------------------------|------------------------|-------------------------------|
+| Branches  | ${stats.branches.found}  | ${stats.branches.hit}  | ${stats.branches.percentage}  |
+| Functions | ${stats.functions.found} | ${stats.functions.hit} | ${stats.functions.percentage} |
+| Lines     | ${stats.lines.found}     | ${stats.lines.hit}     | ${stats.lines.percentage}     |
+`
 }
 
 function normalisePath(file) {
