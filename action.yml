@@ -11,7 +11,7 @@ inputs:
   delete-old-comments:
     description: Set to true to delete old Coverage Report comments
     required: false
-    default: false
+    default: true
   working-directory:
     description: Set working directory if project is not in root folder
     required: false

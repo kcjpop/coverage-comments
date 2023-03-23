@@ -9803,17 +9803,21 @@ async function getExistingComments({ client, options, context }) {
   let results = []
   let response
 
-  do {
-    response = await client.issues.listComments({
-      issue_number: context.issue.number,
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      per_page: REQUESTED_COMMENTS_PER_PAGE,
-      page,
-    })
-    results = results.concat(response.data)
-    page++
-  } while (response.data.length === REQUESTED_COMMENTS_PER_PAGE)
+  try {
+    do {
+      response = await client.issues.listComments({
+        issue_number: context.issue.number,
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        per_page: REQUESTED_COMMENTS_PER_PAGE,
+        page,
+      })
+      results = results.concat(response.data)
+      page++
+    } while (response.data.length === REQUESTED_COMMENTS_PER_PAGE)
+  } catch (e) {
+    console.error('fetching comment', e)
+  }
 
   return results.filter(
     (comment) =>
