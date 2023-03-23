@@ -6,7 +6,14 @@ const github = require('@actions/github')
 const { getStats } = require('./lcov')
 
 function draftComment(stats) {
-  return `Comment ${stats.lines.hit} / ${stats.lines.found}`
+  return `**Coverage report:**
+
+|           | **Found**                | **Hit**                | **%**                         |
+|-----------|--------------------------|------------------------|-------------------------------|
+| Branches  | ${stats.branches.found}  | ${stats.branches.hit}  | ${stats.branches.percentage}  |
+| Functions | ${stats.functions.found} | ${stats.functions.hit} | ${stats.functions.percentage} |
+| Lines     | ${stats.lines.found}     | ${stats.lines.hit}     | ${stats.lines.percentage}     |
+`
 }
 
 function normalisePath(file) {
