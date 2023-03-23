@@ -1,0 +1,21 @@
+name: 'Code coverage comments'
+description: 'Comment code coverage from lcov.info file'
+inputs:
+  github-token:
+    description: Github token
+    required: true
+    default: ${{ github.token }}
+  lcov-file:
+    description: The location of the lcov.info file
+    required: false
+  delete-old-comments:
+    description: Set to true to delete old Coverage Report comments
+    required: false
+    default: true
+  working-directory:
+    description: Set working directory if project is not in root folder
+    required: false
+    default: './'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
