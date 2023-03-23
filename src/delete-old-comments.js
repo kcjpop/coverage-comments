@@ -3,6 +3,8 @@ const core = require('@actions/core')
 const REQUESTED_COMMENTS_PER_PAGE = 20
 
 async function getExistingComments({ client, options, context }) {
+  if (context.issue.number == null) return []
+
   let page = 0
   let results = []
   let response

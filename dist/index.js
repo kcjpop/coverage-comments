@@ -9799,6 +9799,8 @@ const core = __nccwpck_require__(7733)
 const REQUESTED_COMMENTS_PER_PAGE = 20
 
 async function getExistingComments({ client, options, context }) {
+  if (context.issue.number == null) return []
+
   let page = 0
   let results = []
   let response
