@@ -9972,14 +9972,19 @@ const github = __nccwpck_require__(3695)
 
 const { getStats } = __nccwpck_require__(6041)
 
-function draftComment(stats) {
-  return `**Coverage report:**
+function draftComment(stats, options) {
+  const title = options.base
+    ? `Coverage after merging \`${options.head}\` into \`${options.base}\` will be:`
+    : `Coverage for this commit:`
 
-|           | **Found**                | **Hit**                | **%**                         |
-|-----------|--------------------------|------------------------|-------------------------------|
-| Branches  | ${stats.branches.found}  | ${stats.branches.hit}  | ${stats.branches.percentage}  |
-| Functions | ${stats.functions.found} | ${stats.functions.hit} | ${stats.functions.percentage} |
-| Lines     | ${stats.lines.found}     | ${stats.lines.hit}     | ${stats.lines.percentage}     |
+  // prettier-ignore
+  return `**${title}**
+
+|                  | Hit/ Found                                            | Percentage                          |
+|------------------|-------------------------------------------------------|-------------------------------------|
+| 🌿 **Branches**  | \`${stats.branches.hit} / ${stats.branches.found}\`   | ${stats.branches.percentage ?? 0}%  |
+| 🔢 **Functions** | \`${stats.functions.hit} / ${stats.functions.found}\` | ${stats.functions.percentage ?? 0}% |
+| 📝 **Lines**     | \`${stats.lines.hit} / ${stats.lines.found}\`         | ${stats.lines.percentage ?? 0}%     |
 `
 }
 
@@ -10050,11 +10055,12 @@ async function run() {
         'lcov file does not exist. Please check the path of lcov-file.',
       )
 
-    const stats = await getStats(lcovFile)
-    const comment = draftComment(stats)
     const context = github.context
-
     const options = getOptions({ context, workingDir })
+
+    const stats = await getStats(lcovFile)
+    const comment = draftComment(stats, options)
+
     await createComment(comment, { options, context, client })
   } catch (error) {
     core.setFailed(error.message || error)
