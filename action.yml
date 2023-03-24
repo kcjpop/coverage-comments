@@ -1,5 +1,5 @@
 name: 'Code coverage comments'
-description: 'Comment code coverage from lcov.info file'
+description: 'Comment code coverage from lcov.info file in commits or PRs'
 inputs:
   github-token:
     description: Github token
@@ -8,6 +8,7 @@ inputs:
   lcov-file:
     description: The location of the lcov.info file
     required: false
+    default: './coverage/lcov.info'
   delete-old-comments:
     description: Set to true to delete old Coverage Report comments
     required: false

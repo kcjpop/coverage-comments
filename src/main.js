@@ -43,8 +43,8 @@ module.exports = async function run() {
     const token = core.getInput('github-token')
     const client = github.getOctokit(token).rest
 
-    const workingDir = core.getInput('working-directory') || './'
-    const lcovFile = path.join(workingDir, core.getInput('lcov-file') || './coverage/lcov.info')
+    const workingDir = core.getInput('working-directory')
+    const lcovFile = path.join(workingDir, core.getInput('lcov-file'))
     const shouldDeleteOldComments = core.getInput('delete-old-comments').toLowerCase() === 'true'
 
     if (!fs.existsSync(lcovFile)) throw new Error('lcov file does not exist. Please check the path of lcov-file.')
