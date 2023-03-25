@@ -7,9 +7,9 @@ it('should generate total coverage table', async () => {
   const expected = `
 |                   | Hit/ Total | Coverage |
 |-------------------|------------|----------|
-| 🌿 **Branches**   | \`2197 / 6131\`       | 35.83% 😙   |
-| 🔢 **Functions**  | \`1172 / 2756\`       | 42.53% 😃   |
-| 📝 **Lines**      | \`3929 / 8412\`       | 46.71% 😃   |`
+| 🌿 **Branches**   | \`5 / 6\`       | 83.33% 🤩   |
+| 🔢 **Functions**  | \`12 / 14\`       | 85.71% 🤩   |
+| 📝 **Lines**      | \`53 / 55\`       | 96.36% 🥳   |`
 
   const { totalCoverageTable } = await prepareCommentParts(file)
   expect(totalCoverageTable.trim()).toBe(expected.trim())
