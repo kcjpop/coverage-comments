@@ -39,9 +39,9 @@ function makeTotalCoverageTable(stats) {
   return `
 |                   | Hit/ Total | Coverage |
 |-------------------|------------|----------|
-| 🌿 **Branches**   | ${b}       | ${bp}%   |
-| 🔢 **Functions**  | ${f}       | ${fp}%   |
-| 📝 **Lines**      | ${l}       | ${lp}%   |`
+| 🌿 **Branches**   | ${b}       | ${bp}   |
+| 🔢 **Functions**  | ${f}       | ${fp}   |
+| 📝 **Lines**      | ${l}       | ${lp}   |`
 }
 
 exports.prepareCommentParts = async function prepareCommentParts(filePath) {

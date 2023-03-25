@@ -24,10 +24,10 @@ function makeTotalCoverageTable(stats) {
   return `
 |                   | Hit/ Total | Coverage |
 |-------------------|------------|----------|
-| 🟰 **Statements** | ${s}       | ${sp}%    |
-| 🌿 **Branches**   | ${c}       | ${cp}%    |
-| 🔢 **Functions**  | ${m}       | ${mp}%    |
-| 📝 **Elements**   | ${e}       | ${ep}%    |`
+| 🟰 **Statements** | ${s}       | ${sp}    |
+| 🌿 **Branches**   | ${c}       | ${cp}    |
+| 🔢 **Functions**  | ${m}       | ${mp}    |
+| 📝 **Elements**   | ${e}       | ${ep}    |`
 }
 
 exports.prepareCommentParts = function prepareCommentParts(filePath) {

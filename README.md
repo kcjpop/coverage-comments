@@ -12,7 +12,6 @@ A Github action to comment coverage data from a `clover.xml` or `lcov.info` file
 
 - [ ] Config param to specify coverage comments on commits, PRs, or both
 - [ ] Config param to show coverages of changed files only
-- [ ] Emoji reactions based on coverage percentage
 
 !["An example of how code coverage comment on a commit"](./screenshot.png)
 
