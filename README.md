@@ -7,6 +7,7 @@ A Github action to comment coverage data from a `clover.xml` or `lcov.info` file
 ☘️ Support `clover.xml` or `lcov.info`
 💬 Delete old comments to avoid spamming the conversation
 ✨ Clean, minimal comment
+🥳 Emojies
 
 **To be developed:**
 
