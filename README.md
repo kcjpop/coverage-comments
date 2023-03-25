@@ -5,8 +5,11 @@ A Github action to comment coverage data from a `clover.xml` or `lcov.info` file
 **Features:**
 
 ☘️ Support `clover.xml` or `lcov.info`
+
 💬 Delete old comments to avoid spamming the conversation
+
 ✨ Clean, minimal comment
+
 🥳 Emojies
 
 **To be developed:**
@@ -34,7 +37,7 @@ jobs:
       - run: pnpm install
       - run: pnpm test
 +      # This needs to be run after a test job so coverage file will be available.
-+      - uses: kcjpop/coverage-comments@v1
++      - uses: kcjpop/coverage-comments@v2
 +        with:
 +          coverage-file: './coverage/clover.xml'
 ```
@@ -51,7 +54,7 @@ jobs:
 ### Example: `lcov.info` is in a different folder
 
 ```yaml
-- uses: kcjpop/coverage-comments@v1
+- uses: kcjpop/coverage-comments@v2
   with:
     coverage-file: 'front/coverage/lcov.info'
 ```
