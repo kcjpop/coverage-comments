@@ -4,13 +4,10 @@ A Github action to comment coverage data from a `clover.xml` or `lcov.info` file
 
 **Features:**
 
-☘️ Support `clover.xml` or `lcov.info`
-
-💬 Delete old comments to avoid spamming the conversation
-
-✨ Clean, minimal comment
-
-🥳 Emojies
+- ☘️ Support `clover.xml` or `lcov.info`
+- 💬 Delete old comments to avoid spamming the conversation
+- ✨ Clean, minimal comment
+- 🥳 Emojis
 
 **To be developed:**
 
