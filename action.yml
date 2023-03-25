@@ -1,5 +1,8 @@
 name: 'Code coverage comments'
-description: 'Comment code coverage from lcov.info file in commits or PRs'
+description: 'Comment code coverage from `lcov.info` or `clover.xml` file in commits or PRs'
+branding:
+  icon: message-square
+  color: yellow
 inputs:
   github-token:
     description: Github token
@@ -9,6 +12,10 @@ inputs:
     description: 'Path to `lcov.info` or `clover.xml` file. It has to include the filename so we can determine how to parse the coverage result.'
     required: true
     default: './coverage/clover.xml'
+  working-directory:
+    description: Set working directory if project is not in root folder
+    required: false
+    default: './'
   delete-old-comments:
     description: 'Set to `true` to delete old coverage comments.'
     required: false

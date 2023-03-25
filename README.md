@@ -36,6 +36,7 @@ jobs:
 +      # This needs to be run after a test job so coverage file will be available.
 +      - uses: kcjpop/coverage-comments@v2
 +        with:
++          github-token: ${{ secrets.GITHUB_TOKEN }}
 +          coverage-file: './coverage/clover.xml'
 ```
 
@@ -43,16 +44,17 @@ jobs:
 
 | Parameter             | Description                                                               | Mandatory | Default value         |
 | --------------------- | ------------------------------------------------------------------------- | --------- | --------------------- |
+| `github-token`        |                                                                           | Yes       | `${{ github.token }}` |
 | `coverage-file`       | Path to `lcov.info` or `clover.xml` file                                  | Yes       |                       |
 | `working-directory`   | Set working directory if project is not in root folder                    | No        | `'./'`                |
 | `delete-old-comments` | Keep only one coverage comment, to avoid spamming a PR with outdated info | No        | `true`                |
-| `github-token`        |                                                                           | No        | `${{ github.token }}` |
 
 ### Example: `lcov.info` is in a different folder
 
 ```yaml
 - uses: kcjpop/coverage-comments@v2
   with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
     coverage-file: 'front/coverage/lcov.info'
 ```
 
