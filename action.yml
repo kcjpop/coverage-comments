@@ -5,18 +5,14 @@ inputs:
     description: Github token
     required: true
     default: ${{ github.token }}
-  lcov-file:
-    description: The location of the lcov.info file
-    required: false
-    default: './coverage/lcov.info'
+  coverage-file-path:
+    description: 'Path to `lcov.info` or `clover.xml` file. It has to include the filename so we can determine how to parse the coverage result.'
+    required: true
+    default: './coverage/clover.xml'
   delete-old-comments:
-    description: Set to true to delete old Coverage Report comments
+    description: 'Set to `true` to delete old coverage comments.'
     required: false
     default: true
-  working-directory:
-    description: Set working directory if project is not in root folder
-    required: false
-    default: './'
 runs:
   using: 'node16'
   main: 'dist/index.js'

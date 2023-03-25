@@ -1,10 +1,11 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('node:path')
+const fs = require('node:fs')
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-const { getStats } = require('./lcov')
-const { createComment } = require('./create-comment')
+const lcov = require('./lcov')
+const clover = require('./clover')
+const { postComment } = require('./post-comment')
 const { deleteOldComments } = require('./delete-old-comments')
 
 function normalisePath(file) {
@@ -44,20 +45,26 @@ module.exports = async function run() {
     const client = github.getOctokit(token).rest
 
     const workingDir = core.getInput('working-directory')
-    const lcovFile = path.join(workingDir, core.getInput('lcov-file'))
+    const coverageFile = path.join(workingDir, core.getInput('coverage-file'))
     const shouldDeleteOldComments = core.getInput('delete-old-comments').toLowerCase() === 'true'
 
-    if (!fs.existsSync(lcovFile)) throw new Error('lcov file does not exist. Please check the path of lcov-file.')
+    if (!fs.existsSync(coverageFile)) throw new Error('File does not exist. Please check the path of `coverage-file`.')
 
     const context = github.context
     const options = getOptions({ context, workingDir })
 
+    // Delete old comments first
     if (shouldDeleteOldComments) {
       await deleteOldComments({ client, options, context })
     }
 
-    const stats = await getStats(lcovFile)
-    await createComment(stats, { options, context, client })
+    // Post new comment
+    let components = null
+    if (coverageFile.includes('clover.xml')) components = await clover.prepareCommentParts(coverageFile)
+    else if (coverageFile.includes('lcov.info')) components = await lcov.prepareCommentParts(coverageFile)
+    else throw new Error('Coverage file has to be either `clover.xml` or `lcov.info`')
+
+    await postComment(components, { options, context, client })
   } catch (error) {
     core.setFailed(error.message || error)
   }
