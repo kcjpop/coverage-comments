@@ -19,3 +19,5 @@ jobs:
       - run: pnpm install
       - run: pnpm test
       - uses: ./
+        with:
+          coverage-file: './coverage/clover.xml'
