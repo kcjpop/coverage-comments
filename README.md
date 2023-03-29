@@ -1,4 +1,4 @@
-## kcjpop/coverage-comments@v2
+## kcjpop/coverage-comments@v2.1
 
 A Github action to comment coverage data from a `clover.xml` or `lcov.info` file in commits/ PRs.
 
