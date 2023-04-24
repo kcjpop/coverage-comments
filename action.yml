@@ -8,7 +8,7 @@ inputs:
     description: Github token
     required: true
     default: ${{ github.token }}
-  coverage-file-path:
+  coverage-file:
     description: 'Path to `lcov.info` or `clover.xml` file. It has to include the filename so we can determine how to parse the coverage result.'
     required: true
     default: './coverage/clover.xml'
