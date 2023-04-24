@@ -1,4 +1,4 @@
-## kcjpop/coverage-comments@v2.1
+## kcjpop/coverage-comments@v2.2
 
 A Github action to comment coverage data from a `clover.xml` or `lcov.info` file in commits/ PRs.
 
@@ -34,7 +34,7 @@ jobs:
       - run: pnpm install
       - run: pnpm test
 +      # This needs to be run after a test job so coverage file will be available.
-+      - uses: kcjpop/coverage-comments@v2.1
++      - uses: kcjpop/coverage-comments@v2.2
 +        with:
 +          github-token: ${{ secrets.GITHUB_TOKEN }}
 +          coverage-file: './coverage/clover.xml'
@@ -52,7 +52,7 @@ jobs:
 ### Example: `lcov.info` is in a different folder
 
 ```yaml
-- uses: kcjpop/coverage-comments@v2.1
+- uses: kcjpop/coverage-comments@v2.2
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     coverage-file: 'front/coverage/lcov.info'
